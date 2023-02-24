@@ -1,4 +1,9 @@
-# DEV Site of Dhrubo
+# All modification for MODELS
 
-=> all you have to merge from this branch(for my update). 
-=> cause i may create many branch for my work flow
+=> it is a common branch. Any update in models folder. 
+
+# git add "./database/models"
+# git commit -m "<message>"
+# git push origin models_branch
+
+
