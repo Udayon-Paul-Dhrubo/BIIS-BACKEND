@@ -21,7 +21,7 @@ const logout = (req, res, next) => {
 const login = async (req, res, next) => {
     try {
 
-        if (!req.user) throw createError("Internal Server Error");
+        if (!req.user) throw createError("Wrong username or password");
 
         const userInfo = req.user;
 
@@ -51,7 +51,7 @@ const login = async (req, res, next) => {
     }
 
     catch (err) {
-        console.log(err);
+        //console.log(err);
 
         res.status(400).json({
             data: {

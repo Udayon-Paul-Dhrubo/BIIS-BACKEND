@@ -5,7 +5,7 @@ const { check, validationResult } = require("express-validator");
 const loginValidation = [
 
     // check student_id field
-    check("student_id")
+    check("username")
         .isLength({ min: 1 })
         .withMessage("Student ID is required"),
 

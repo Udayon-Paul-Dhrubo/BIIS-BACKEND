@@ -7,13 +7,13 @@ const userAuth = require('./userAuthentication');
 const combineAuthentication = async (req, res, next) => {
 
     try {
-        await studentAuthMiddleware(req, res, async (err) => {
+        await studentAuth(req, res, async (err) => {
             if (!err) return next();
 
-            await teacherAuthMiddleware(req, res, async (err) => {
+            await teacherAuth(req, res, async (err) => {
                 if (!err) return next();
 
-                await userAuthMiddleware(req, res, async (err) => {
+                await userAuth(req, res, async (err) => {
                     if (!err) return next();
 
                     // wrong username or password
@@ -26,7 +26,7 @@ const combineAuthentication = async (req, res, next) => {
                         },
                         errors: {
                             common: {
-                                msg: err.message,
+                                message: err.message
                             }
                         }
                     });

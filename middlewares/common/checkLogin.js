@@ -25,6 +25,7 @@ const checkLogin = async (req, res, next) => {
         next();
     }
     catch (err) {
+        console.log(err)
         res.status(500).json({
             errors: {
                 common: {

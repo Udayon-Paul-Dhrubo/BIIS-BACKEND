@@ -28,3 +28,6 @@ router.delete("/", logout);
 // login
 router.post("/", loginValidation, handleValidationErrors, authentication, login);
 
+// export
+module.exports = router;
+

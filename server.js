@@ -13,6 +13,7 @@ const {
 
 // routers
 const homeRouter = require('./routers/home/homeRouter');
+const loginRouter = require('./routers/authentication/loginRouter');
 
 // app config
 const app = express();
@@ -29,6 +30,7 @@ app.use(cookieParser());
 
 // API routes
 app.use("/", homeRouter);
+app.use("/login", loginRouter);
 
 // 404 error handler
 app.use(notFoundHandler);
