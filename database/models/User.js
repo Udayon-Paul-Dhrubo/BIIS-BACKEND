@@ -1,32 +1,33 @@
 // external imports
 const mongoose = require('mongoose');
 
-// Student Schema
-const StudentSchema = mongoose.Schema({
+// User Schema
+const UserSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
         trim: true,
     },
-    studentId: {
+    email: {
         type: String,
         required: true,
         trim: true,
+        lowercase: true,
     },
     password: {
         type: String,
         required: true,
     },
 
-    department: {
+    office: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Department',
-    }
+        ref: 'Office',
+    },
 
 }, { timestamps: true });
 
-// Student Model
-const Student = mongoose.model('Student', StudentSchema);
+// User Model
+const User = mongoose.model('User', UserSchema);
 
 // export the model
-module.exports = Student;
+module.exports = User;
