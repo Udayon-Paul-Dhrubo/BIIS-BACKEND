@@ -3,7 +3,13 @@
 
 ## Initialization
  => git checkout dev_dhrubo \
- => in terminal \
-                    ### npm i \
+ => (terminal) npm i \
+ => npm start \
+ 
+ ## API call service
+ 
+ ### `http://localhost:5000/`
+ 
+
     
  
