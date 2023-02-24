@@ -25,7 +25,8 @@ then you cann't access. You will get error in response. Otherwise you will get s
  
  ![image](https://user-images.githubusercontent.com/80277475/221214594-95c26c56-1cbf-4d8f-b5f8-dc3b6c7bd745.png)
  
- here username : studentID (in case of student) or email(in case of Teacher or Officer)
+ here username : `studentID` ( in case of student ) \ 
+ \t or `email`( in case of Teacher or Officer )
 
  
 
