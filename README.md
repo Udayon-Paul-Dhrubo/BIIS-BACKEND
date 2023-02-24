@@ -3,8 +3,9 @@
 
 ## Initialization
  => git checkout dev_dhrubo \
- => (terminal) npm i \
- => npm start \
+ (terminal) \
+ => `npm i` \
+ => `npm start` 
  
  ## API call service
  
