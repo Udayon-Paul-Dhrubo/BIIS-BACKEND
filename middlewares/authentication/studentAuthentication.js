@@ -1,13 +1,14 @@
 // external imports
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const createError = require("http-errors");
+
 
 // MODEL
 const Student = require('../../database/models/Student');
 
 // student login
 const studentLogin = async (req, res, next) => {
+
+    console.log("inside student login");
     try {
         // find the student having the given username
         const student = await Student.findOne({ studentId: req.body.username });
@@ -23,6 +24,9 @@ const studentLogin = async (req, res, next) => {
 
         if (!isValidPassword)
             return next();
+        
+        
+        console.log("student: ", student);
 
         // prepare student info
         const studentInfo = {

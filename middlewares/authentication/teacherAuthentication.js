@@ -1,5 +1,4 @@
 // external imports
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 // MODEL
@@ -7,7 +6,11 @@ const Teacher = require('../../database/models/Teacher');
 
 // teacher login
 const teacherLogin = async (req, res, next) => {
+    console.log("inside teacher login");
     try {
+
+        if (req.user) return next();
+
         // find the teacher having the given username
         const teacher = await Teacher.findOne({ email: req.body.username });
 
@@ -23,6 +26,8 @@ const teacherLogin = async (req, res, next) => {
         if (!isValidPassword)
             return next();
 
+        console.log("teacher: ", teacher);
+
         // prepare teacher info
         const teacherInfo = {
             name: teacher.name,
@@ -34,6 +39,8 @@ const teacherLogin = async (req, res, next) => {
             ...teacherInfo,
             userType: 'teacher',
         }
+
+        next();
     }
     catch (err) {
         next(err);

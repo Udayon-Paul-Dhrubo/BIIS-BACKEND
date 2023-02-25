@@ -21,6 +21,8 @@ const logout = (req, res, next) => {
 const login = async (req, res, next) => {
     try {
 
+        console.log("login called");
+
         if (!req.user) throw createError("Wrong username or password");
 
         const userInfo = req.user;
@@ -51,9 +53,9 @@ const login = async (req, res, next) => {
     }
 
     catch (err) {
-        //console.log(err);
+        console.log(err);
 
-        res.status(400).json({
+        res.status(500).json({
             data: {
                 //ensuring that the user doesn't have to retype the username
                 username: req.body.username,

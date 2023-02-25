@@ -15,6 +15,10 @@ const {
 const homeRouter = require('./routers/home/homeRouter');
 const loginRouter = require('./routers/authentication/loginRouter');
 
+
+//! only for database creation
+const createRouter = require('./routers/initial/createEntry');
+
 // app config
 const app = express();
 dotenv.config();
@@ -26,11 +30,12 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // API routes
 app.use("/", homeRouter);
 app.use("/login", loginRouter);
+app.use("/create", createRouter);
 
 // 404 error handler
 app.use(notFoundHandler);

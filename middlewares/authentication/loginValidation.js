@@ -26,6 +26,7 @@ const handleValidationErrors = (req, res, next) => {
         return next();
     }
     else {
+        console.log(mappedErrors);
         // unprocessable entity
         res.status(422).json({
             errors: mappedErrors

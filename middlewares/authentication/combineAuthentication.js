@@ -8,34 +8,36 @@ const combineAuthentication = async (req, res, next) => {
 
     try {
         await studentAuth(req, res, async (err) => {
-            if (!err) return next();
+            if (err) throw err;
 
             await teacherAuth(req, res, async (err) => {
-                if (!err) return next();
+                if (err) throw err;
 
                 await userAuth(req, res, async (err) => {
                     if (!err) return next();
 
-                    // wrong username or password
-                    console.log(err);
-
-                    res.status(400).json({
-                        data: {
-                            //ensuring that the user doesn't have to retype the username
-                            username: req.body.username,
-                        },
-                        errors: {
-                            common: {
-                                message: err.message
-                            }
-                        }
-                    });
+                    throw err;
                 });
             });
         });
     }
     catch (err) {
-        next(err);
+
+        console.log("================== inside combine authentication error ==================");
+        // Internal Server Error
+        console.log(err);
+
+        res.status(400).json({
+            data: {
+                //ensuring that the user doesn't have to retype the username
+                username: req.body.username,
+            },
+            errors: {
+                common: {
+                    message: err.message
+                }
+            }
+        });
     }
 };
 

@@ -2,6 +2,8 @@
 const express = require("express");
 
 // internal imports
+const { redirectLogin } = require("../../middlewares/common/checkLogin");
+
 const {
     loginValidation,
     handleValidationErrors
@@ -26,7 +28,7 @@ router.get("/", getLoginPage);
 router.delete("/", logout);
 
 // login
-router.post("/", loginValidation, handleValidationErrors, authentication, login);
+router.post("/", redirectLogin, loginValidation, handleValidationErrors, authentication, login);
 
 // export
 module.exports = router;

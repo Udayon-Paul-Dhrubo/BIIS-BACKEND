@@ -21,13 +21,7 @@ const ComplaintSchema = mongoose.Schema({
 
     anonimity: {
         type: Boolean,
-        enum: [true, false],
         default: false,
-    },
-
-    timestamp: {
-        type: Date,
-        default: Date.now,
     },
 
     status: {
