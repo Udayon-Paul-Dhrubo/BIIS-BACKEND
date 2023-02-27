@@ -1,6 +1,5 @@
 //external imports
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 const createError = require('http-errors');
 
 

@@ -1,20 +1,20 @@
 // external imports
 const jwt = require('jsonwebtoken');
 
-const extractToken = (req) => { 
+const extractToken = (req) => {
     let cookies =
         Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
 
     const bearerToken = req.headers.authorization ? req.headers.authorization.split(' ')[1] : null;
 
-    const token = cookies ? cookies[process.env.COOKIE_NAME] : ( bearerToken ? bearerToken : null );
+    const token = cookies ? cookies[process.env.COOKIE_NAME] : (bearerToken ? bearerToken : null);
 
     return token;
 }
 
 // check if user is logged in
 const checkLogin = async (req, res, next) => {
-    
+
     const token = extractToken(req);
 
     if (!token) {
@@ -28,7 +28,7 @@ const checkLogin = async (req, res, next) => {
     // token verification
     try {
         const decodedInfo = await jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decodedInfo;
+        req.user = { ...decodedInfo };
         next();
     }
     catch (err) {
@@ -43,7 +43,7 @@ const checkLogin = async (req, res, next) => {
     }
 }
 
-const redirectLogin = async (req, res, next) => { 
+const redirectLogin = async (req, res, next) => {
     const token = extractToken(req);
 
     if (!token) return next();
@@ -59,9 +59,9 @@ const redirectLogin = async (req, res, next) => {
                 isValidToken: true,
             });
         }
-        catch (err) { 
+        catch (err) {
             next();
-        }             
+        }
     }
 }
 
