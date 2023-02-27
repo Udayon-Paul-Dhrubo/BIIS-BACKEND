@@ -7,7 +7,7 @@
 ```
 git clone https://github.com/Udayon-Paul-Dhrubo/BIIS-BACKEND.git
 git chekout dev_dhrubo
-set NODE_ENV=development
+npm install -g win-node-env
 npm i
 npm start
 ``` 
