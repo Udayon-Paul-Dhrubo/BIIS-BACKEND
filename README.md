@@ -1,3 +1,3 @@
 # BIIS-BACKEND
 
-=> front end site only checkout this main branch
+`git checkout dev_dhrubo`
