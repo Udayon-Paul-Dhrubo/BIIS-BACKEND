@@ -29,7 +29,7 @@ Authorization : bearer <access_token>
 
 # `API call Features`
 ---
-### 1. `GET http://localhost:5000/login`
+## 1. `GET http://localhost:5000/login`
 > if the user is logged in. then he will get `Temporary Redirect(307)` response with the message form of
 ```
 {
@@ -44,7 +44,7 @@ Authorization : bearer <access_token>
 { message: "Login page" }
 ```
 
-### 2. `POST http://localhost:5000/login`
+## 2. `POST http://localhost:5000/login`
 > you must include `body` object in `request header` in json format
 - body object must include username and password of string type. if any of this field is empty then the request is rejected
 ```
@@ -67,7 +67,7 @@ Authorization : bearer <access_token>
 - and also `cookie` is being set in the response object
 
 
-### 3. `GET http://localhost:5000/`
+## 3. `GET http://localhost:5000/`
 > if the user is not logged in then you will get `Unauthorized Message(403)` containing
 ```
 {
