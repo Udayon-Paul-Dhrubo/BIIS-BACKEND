@@ -10,7 +10,7 @@ const ComplaintSchema = mongoose.Schema({
 
     tags: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Complaint_Tag',
+        ref: 'Tag',
     }],
 
     student: {
