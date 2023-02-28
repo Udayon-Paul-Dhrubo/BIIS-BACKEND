@@ -10,7 +10,7 @@ const { redirectUrl } = require('../../controllers/home/homePage');
 const router = express.Router();
 
 // get home page
-router.get('/', checkLogin, redirectUrl);
+router.get("/", checkLogin, redirectUrl);
 
 // export
 module.exports = router;

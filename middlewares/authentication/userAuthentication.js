@@ -6,7 +6,6 @@ const User = require('../../database/models/User');
 
 // user login
 const userLogin = async (req, res, next) => {
-    console.log("inside user login");
     try {
 
         if (req.user) return next();
@@ -33,6 +32,7 @@ const userLogin = async (req, res, next) => {
             name: user.name,
             email: user.email,
             office: user.office.name,
+            _id: user._id,
         };
 
         req.user = {

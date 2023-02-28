@@ -11,6 +11,7 @@ const {
     errorHandler
 } = require('./middlewares/common/errorHandler');
 
+
 // routers
 const homeRouter = require('./routers/home/homeRouter');
 const loginRouter = require('./routers/authentication/loginRouter');
@@ -34,10 +35,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // API routes
+app.use("/", homeRouter);
 app.use("/login", loginRouter);
-app.use('*', homeRouter);
-app.use("/create", createRouter);
 app.use("/student", studentRouter);
+
+//! only for database creation
+//app.use("/create", createRouter);
 
 // 404 error handler
 app.use(notFoundHandler);

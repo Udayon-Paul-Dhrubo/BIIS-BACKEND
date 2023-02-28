@@ -6,7 +6,6 @@ const Teacher = require('../../database/models/Teacher');
 
 // teacher login
 const teacherLogin = async (req, res, next) => {
-    console.log("inside teacher login");
     try {
 
         if (req.user) return next();
@@ -33,6 +32,7 @@ const teacherLogin = async (req, res, next) => {
             name: teacher.name,
             email: teacher.email,
             department: teacher.department.name,
+            _id: teacher._id,
         };
 
         req.user = {

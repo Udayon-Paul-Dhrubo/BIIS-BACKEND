@@ -15,6 +15,8 @@ const extractToken = (req) => {
 // check if user is logged in
 const checkLogin = async (req, res, next) => {
 
+    console.log("url : ", req.originalUrl);
+
     const token = extractToken(req);
 
     if (!token) {

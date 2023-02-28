@@ -1,12 +1,16 @@
 const redirectUrl = (req, res, next) => {
 
-    console.log(req.user);
+    const url = req.url;
+
+    if (url.includes('student') || url.includes('teacher') || url.includes('office')) next();
 
     const bearerToken = req.headers.authorization ? req.headers.authorization.split(' ')[1] : null;
 
     if (bearerToken) {
         res.header('Authorization', 'Bearer ' + bearerToken);
     }
+
+
 
 
     if (req.user.userType === 'student')

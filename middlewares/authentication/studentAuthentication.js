@@ -8,7 +8,6 @@ const Student = require('../../database/models/Student');
 // student login
 const studentLogin = async (req, res, next) => {
 
-    console.log("inside student login");
     try {
         // find the student having the given username
         const student = await Student.findOne({ studentId: req.body.username });
@@ -33,6 +32,7 @@ const studentLogin = async (req, res, next) => {
             name: student.name,
             studentID: student.studentId,
             department: student.department.name,
+            _id: student._id,
         };
 
         req.user = {
