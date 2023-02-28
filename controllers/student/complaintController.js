@@ -33,10 +33,11 @@ const addComplaint = async (req, res, next) => {
         const tags = req.body.tags.map(tag => tag._id);
         const locationId = req.body.location._id;
 
+
         const complaint = new Complaint({
             location: locationId,
             tags: tags,
-            student: req.user._id,
+            student: (req.user._id) ? req.user._id : null,
             anonimity: req.body.anonimity || false,
             subject: req.body.subject,
             complaint_body: req.body.complaint_body

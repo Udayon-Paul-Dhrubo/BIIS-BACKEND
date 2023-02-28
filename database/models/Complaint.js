@@ -15,8 +15,7 @@ const ComplaintSchema = mongoose.Schema({
 
     student: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Student',
-        required: true,
+        ref: 'Student'
     },
 
     anonimity: {
