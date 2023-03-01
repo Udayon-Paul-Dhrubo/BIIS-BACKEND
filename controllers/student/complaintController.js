@@ -70,7 +70,7 @@ const getComplaintByToken = async (req, res, next) => {
 
         // const complaintExists = await Complaint.exists({ _id: req.params.complaint_token });
         // if (!complaintExists) throw createError(404, "Complaint not found");
-
+        console.log("In getComplaintByToken : " + req.params);
         const complaint = await Complaint.findOne({ _id: req.params.complaint_token });
         // .populate("location")
         // .populate("tags")
