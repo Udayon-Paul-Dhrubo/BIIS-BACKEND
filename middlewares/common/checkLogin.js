@@ -19,6 +19,8 @@ const checkLogin = async (req, res, next) => {
 
     console.log("url : ", req.originalUrl);
 
+    console.log("req params in checklogin : ", req.params);
+
     const token = extractToken(req);
     console.log(token);
 
