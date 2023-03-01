@@ -3,13 +3,13 @@ const jwt = require('jsonwebtoken');
 
 const extractToken = (req) => {
     console.log(req.headers);
-    console.log(req.signedCookies)
-    // let cookies =
-        // Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
+
+    let cookies =
+        Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
 
     const bearerToken = req.headers.authorization ? req.headers.authorization.split(' ')[1] : null;
 
-    // const token = cookies ? cookies[process.env.COOKIE_NAME] : (bearerToken ? bearerToken : null);
+    const token = cookies ? cookies[process.env.COOKIE_NAME] : (bearerToken ? bearerToken : null);
 
     return bearerToken;
 }
