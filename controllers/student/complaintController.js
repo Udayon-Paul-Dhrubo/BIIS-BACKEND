@@ -70,17 +70,21 @@ const getComplaintByToken = async (req, res, next) => {
 
         // const complaintExists = await Complaint.exists({ _id: req.params.complaint_token });
         // if (!complaintExists) throw createError(404, "Complaint not found");
-        console.log("In getComplaintByToken : " + req.params);
-        const complaint = await Complaint.findOne({ _id: req.params.complaint_token });
-        // .populate("location")
-        // .populate("tags")
-        // .populate("student");
+
+    
+        console.log("In getComplaintByToken : " + req.params.complaint_token);
+        console.log("In getComplaintByToken : " + req.params['complaint_token']);
+        const complaint = await Complaint.findOne({ _id: req.params.complaint_token })
+        .populate("location")
+        .populate("tags")
+        .populate("student");
+
+        console.log(complaint);
 
         if (!complaint) throw createError(404, "Complaint not found");
 
-        if (complaint.student._id != req.user._id) throw createError(403, "You are not authorized to view this complaint");
-
         res.status(200).json(complaint);
+       //res.status(200).json({message: 'helllo'})
     }
     catch (err) {
         next(err);
