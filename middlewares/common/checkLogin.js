@@ -2,22 +2,26 @@
 const jwt = require('jsonwebtoken');
 
 const extractToken = (req) => {
-    let cookies =
-        Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
+    console.log(req.headers);
+    console.log(req.signedCookies)
+    // let cookies =
+        // Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
 
     const bearerToken = req.headers.authorization ? req.headers.authorization.split(' ')[1] : null;
 
-    const token = cookies ? cookies[process.env.COOKIE_NAME] : (bearerToken ? bearerToken : null);
+    // const token = cookies ? cookies[process.env.COOKIE_NAME] : (bearerToken ? bearerToken : null);
 
-    return token;
+    return bearerToken;
 }
 
 // check if user is logged in
 const checkLogin = async (req, res, next) => {
 
     console.log("url : ", req.originalUrl);
+    console.log(req.body.params)
 
     const token = extractToken(req);
+    console.log(token);
 
     if (!token) {
         return res.status(403).json({

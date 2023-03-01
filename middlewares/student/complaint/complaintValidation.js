@@ -58,8 +58,12 @@ const complaintValidation = [
 // handle validation errors
 const handleValidationErrors = (req, res, next) => {
 
-    const errors = validationResult(req);
+    
+
+    const errors = validationResult(req.body.params);
     const mappedErrors = errors.mapped();
+
+    console.log( " in complaint validation : " + mappedErrors.length);
 
     if (Object.keys(mappedErrors).length === 0) {
         return next();

@@ -29,18 +29,19 @@ const getTags = async (req, res, next) => {
 // add a new complaint
 const addComplaint = async (req, res, next) => {
     try {
+        let params = req.body.params
 
-        const tags = req.body.tags.map(tag => tag._id);
-        const locationId = req.body.location._id;
+        const tags = params.tags.map(tag => tag._id);
+        const locationId = params.location._id;
 
 
         const complaint = new Complaint({
             location: locationId,
             tags: tags,
             student: (req.user._id) ? req.user._id : null,
-            anonimity: req.body.anonimity || false,
-            subject: req.body.subject,
-            complaint_body: req.body.complaint_body
+            anonimity: params.anonimity || false,
+            subject: params.subject,
+            complaint_body: params.complaint_body
         });
 
         const savedComplaint = await complaint.save();
@@ -57,7 +58,7 @@ const addComplaint = async (req, res, next) => {
 
         res.status(500).json({
             message: err.message,
-            data: { ...req.body }
+            data: { ...params }
         });
     }
 };
@@ -69,12 +70,14 @@ const getComplaintByToken = async (req, res, next) => {
         // const complaintExists = await Complaint.exists({ _id: req.params.complaint_token });
         // if (!complaintExists) throw createError(404, "Complaint not found");
 
-        const complaint = await Complaint.findOne({ _id: req.params.complaint_token })
-        .populate("location")
-        .populate("tags")
-        .populate("student");
+        const complaint = await Complaint.findOne({ _id: req.params.complaint_token });
+        // .populate("location")
+        // .populate("tags")
+        // .populate("student");
 
         if (!complaint) throw createError(404, "Complaint not found");
+
+        if (complaint.student._id != req.user._id) throw createError(403, "You are not authorized to view this complaint");
 
         res.status(200).json(complaint);
     }
