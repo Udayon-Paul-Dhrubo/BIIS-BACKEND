@@ -30,6 +30,7 @@ const getTags = async (req, res, next) => {
 const addComplaint = async (req, res, next) => {
     try {
         let params = req.body.params
+        console.log("In Backend : " + params);
 
         const tags = params.tags.map(tag => tag._id);
         const locationId = params.location._id;
@@ -38,7 +39,7 @@ const addComplaint = async (req, res, next) => {
         const complaint = new Complaint({
             location: locationId,
             tags: tags,
-            student: (req.user._id) ? req.user._id : null,
+            student: (params.anonimity) ? req.user._id : null,
             anonimity: params.anonimity || false,
             subject: params.subject,
             complaint_body: params.complaint_body
