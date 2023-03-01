@@ -27,8 +27,8 @@ const complaintValidation = [
         .isObject()
         .withMessage("Location object is required")
         .custom(async (location) => {
-            
-            if (!location._id) throw new Error("Location id is required");    
+
+            if (!location._id) throw new Error("Location id is required");
 
             const locationExists = await Location.exists({ _id: location._id });
             if (!locationExists) throw new Error("Invalid location : " + location._id);
@@ -58,12 +58,13 @@ const complaintValidation = [
 // handle validation errors
 const handleValidationErrors = (req, res, next) => {
 
-    
+    console.log('handle validation result : ' + req.body.params);
+
 
     const errors = validationResult(req.body.params);
     const mappedErrors = errors.mapped();
 
-    console.log( " in complaint validation : " + mappedErrors.length);
+    console.log(" in complaint validation : " + mappedErrors.length);
 
     if (Object.keys(mappedErrors).length === 0) {
         return next();
